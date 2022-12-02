@@ -86,6 +86,7 @@
 <script>
 import productApi from '../api/product'
 import wxPayApi from '../api/wxPay'
+import alipayApi from "../api/aliPay";
 import orderInfoApi from '../api/orderInfo'
 
 export default {
@@ -145,6 +146,14 @@ export default {
           this.timer = setInterval(() => {
             this.queryOrderStatus()
           }, 3000)
+        })
+      } else if (this.payOrder.payType === 'alipay') {
+
+        //调用支付宝统一收单下单并支付页面接口
+        alipayApi.tradePagePay(this.payOrder.productId).then((response) => {
+          console.log(response.data)
+          //将支付宝返回的表单字符串写在浏览器中，表单会自动触发submit提交
+          document.write(response.data)
         })
       }
     },

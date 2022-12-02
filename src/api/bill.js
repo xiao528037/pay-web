@@ -7,5 +7,11 @@ export default{
       url: '/api/wxpay/downloadbill/' + billDate + '/' + type,
       method: 'get'
     })
+  },
+  downloadBillAliPay(billDate, type) {
+    return request({
+      url: '/alipay/trade/bill/query/' + billDate + '/' + type,
+      method: 'get'
+    })
   }
 }
